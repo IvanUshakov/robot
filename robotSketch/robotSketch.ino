@@ -81,9 +81,6 @@ void loop(void)
       case 'd'://Turn Right
         right(100,100);
         break;
-      case 'z':
-        Serial.println("Hello");
-        break;
       case 'x':
         stop();
         break;
