@@ -57,10 +57,39 @@ void setup(void)
 { 
   setupMotors();
   setupLCD();
+  Serial.begin(19200);      //Set Baud Rate
+  Serial.println("Run keyboard control");
 } 
 
 void loop(void) 
 {
-
+  if(Serial.available()){
+    char val = Serial.read();
+    if(val != -1)
+    {
+      switch(val)
+      {
+      case 'w'://Move Forward
+        forward(100,100);   //move forward in max speed
+        break;
+      case 's'://Move Backward
+        backward(100,100);   //move back in max speed
+        break;
+      case 'a'://Turn Left
+        left(100,100);
+        break;       
+      case 'd'://Turn Right
+        right(100,100);
+        break;
+      case 'z':
+        Serial.println("Hello");
+        break;
+      case 'x':
+        stop();
+        break;
+      }
+    }
+    else stop();  
+  }
 }
 
