@@ -1,3 +1,5 @@
+#include <LiquidCrystal.h>
+
 int LeftMotorSpeedPin = 5;
 int RightMotorSpeedPin = 6;
 int LeftMotorDirectionPin = 4;
@@ -49,8 +51,12 @@ void setupMotors(void)
   pinMode(RightMotorDirectionPin, OUTPUT);
 }
 
+LiquidCrystal lcd(12, 11, 2, 3, 8, 9);
+
 void setupLCD(void)
 {
+  lcd.begin(16, 2);
+  lcd.print("hello, world!");
 }
 
 void setup(void) 
@@ -70,16 +76,16 @@ void loop(void)
       switch(val)
       {
       case 'w'://Move Forward
-        forward(100,100);   //move forward in max speed
+        forward(100, 100);   //move forward in max speed
         break;
       case 's'://Move Backward
-        backward(100,100);   //move back in max speed
+        backward(100, 100);   //move back in max speed
         break;
       case 'a'://Turn Left
-        left(100,100);
+        left(100, 100);
         break;       
       case 'd'://Turn Right
-        right(100,100);
+        right(100, 100);
         break;
       case 'x':
         stop();
